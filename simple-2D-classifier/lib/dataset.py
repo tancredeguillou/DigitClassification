@@ -15,7 +15,10 @@ class Simple2DDataset(Dataset):
         # Hint: you can use os.path.join to obtain a path in a subfolder.
         # Save samples and annotations to class members self.samples and self.annotations respectively.
         # Samples should be an Nx2 numpy array. Annotations should be Nx1.
-        raise NotImplementedError()
+        path = os.path.join('data', split + '.npz')
+        with np.load(path) as data:
+            self.samples = data['samples']
+            self.annotations = data['annotations']
             
     def __len__(self):
         # Returns the number of samples in the dataset.
@@ -23,9 +26,8 @@ class Simple2DDataset(Dataset):
     
     def __getitem__(self, idx):
         # Returns the sample and annotation with index idx.
-        raise NotImplementedError()
-        sample = None
-        annotation = None
+        sample = self.samples[idx]
+        annotation = self.annotations[idx]
         
         # Convert to tensor.
         return {
