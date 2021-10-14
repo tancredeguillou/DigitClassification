@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+from torch.nn.modules.activation import ReLU
 
 
 class LinearClassifier(nn.Module):
@@ -33,9 +34,12 @@ class MLPClassifier(nn.Module):
         # Input is 2D.
         # Output is a single value.
         # Multiple linear layers each followed by a ReLU non-linearity (apart from the last).
-        raise NotImplementedError()
         self.layers = nn.Sequential(
-            # TODO
+            nn.Linear(2, 16),
+            nn.ReLU(),
+            nn.Linear(16, 16),
+            nn.ReLU(),
+            nn.Linear(16, 1)
         )
     
     def forward(self, batch):
