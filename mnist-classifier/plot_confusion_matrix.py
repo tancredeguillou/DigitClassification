@@ -35,12 +35,20 @@ if __name__ == '__main__':
     # Put the network in evaluation mode.
     net.eval()
 
-    # Create the optimizer.
-    optimizer = Adam(net.parameters())
-
     # Based on run_validation_epoch, write code for computing the 10x10 confusion matrix.
     confusion_matrix = np.zeros([10, 10])
-    raise NotImplementedError()
+    # Loop over batches.
+    for batch in valid_dataloader:
+        # Forward pass only.
+        output = net(batch['input'])
+
+        # Compute the accuracy using compute_accuracy.
+        pred = torch.argmax(output, dim=1)
+        true = batch['annotation']
+        stacked = torch.stack((true, pred), dim=1)
+        for p in stacked:
+            tl, pl = p.tolist()
+            confusion_matrix[tl, pl] += 1
     
     # Plot the confusion_matrix.
     plt.figure(figsize=[5, 5])

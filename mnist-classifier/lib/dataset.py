@@ -40,8 +40,8 @@ class MNISTDataset(Dataset):
         # Set up paths for either train or test data from disk based on split parameter.
         # Data is located in the folder "data".
         # Save samples and annotations to a class member.
-        data_path = os.path.join('data', f'{split}-images-idx3-ubyte.gz')
-        labels_path = os.path.join('data', f'{split}-labels-idx1-ubyte.gz')
+        data_path = os.path.join('mnist-classifier', 'data', f'{split}-images-idx3-ubyte.gz')
+        labels_path = os.path.join('mnist-classifier', 'data', f'{split}-labels-idx1-ubyte.gz')
         self.data = load_images(data_path)
         self.annotations = load_labels(labels_path)
             
@@ -56,7 +56,6 @@ class MNISTDataset(Dataset):
 
         # Images are generally represented as uint8 matrices ([0 .. 255]).
         # Normalize the data between -1 and 1!
-        raise NotImplementedError()
         sample = normalize(sample)
         
         return {
@@ -66,6 +65,5 @@ class MNISTDataset(Dataset):
 
 
 def normalize(sample):
-    raise NotImplementedError()
-    new_sample = None
+    new_sample = (sample.astype(float) - 128) / 128
     return new_sample

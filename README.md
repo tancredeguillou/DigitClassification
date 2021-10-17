@@ -23,3 +23,19 @@ networks.py implements a Multi-Layer-Perceptron for non linearly separable data.
 
 ### Feature transform of data
 Since our data has a circular shape, we might want to change the coordinate system of our model to make our classes linearly separable. We can logically transform them with polar coordinates (r, θ). Since data represents two circles, by having r as horizontal axis and θ as vertical axis we will have two straight vertical lines for the corresonding radiuses.
+
+## 2. MNIST Classifier
+
+### Data normalization
+We want pixel value to range in [-1, 1] instead of [0, 255]. Since the values are stored as uint8, i.e cannot be negative, we first have to consider them as float by changing the type.
+
+### Training loop
+The training loop is done in the same way except for the loss function which is a cross entropy instead of binary. That is beacause we don't have only two classes anymore.
+
+### MLP
+One linear prediction layer : 91.85% accuracy.
+One hidden linear layer of dimension 32 and one final linear prediction layer : 94.88% accuracy.
+
+### Convolutional network
+Three convolutional layers with ReLu and max pooling followed by one last adaptive max pooling and a simple classifier linear prediction layer.
+Accuracy obtained : 98.08%.

@@ -73,5 +73,4 @@ def transform(sample):
     rho = np.sqrt(sample[0]**2 + sample[1]**2)
     phi = np.arctan2(sample[1], sample[0])
     new_sample = np.array([rho, phi])
-    #print(new_sample[0], new_sample[1])
     return new_sample
