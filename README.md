@@ -22,7 +22,7 @@ We can implement the training loop in the run_training_epoch function from train
 networks.py implements a Multi-Layer-Perceptron for non linearly separable data. Since MLPs are designed to approximate any continuous function, they can solve problems which are not linearly separable.
 
 ### Feature transform of data
-Since our data has a circular shape, we might want to change the coordinate system of our model to make our classes linearly separable. We can logically transform them with polar coordinates (r, θ). Since data represents two circles, by having r as horizontal axis and θ as vertical axis we will have two straight vertical lines for the corresonding radiuses.
+Since our data has a circular shape, we might want to change the coordinate system of our model to make our classes linearly separable. We can logically transform them with polar coordinates (r, θ). Since data represents two circles, by having r as horizontal axis and θ as vertical axis we will have two straight vertical lines for the corresponding radius.
 
 ## 2. MNIST Classifier
 
